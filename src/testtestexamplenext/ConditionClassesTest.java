@@ -4,10 +4,24 @@ public class ConditionClassesTest {
     public static void main(String[] args) {
 
         System.out.println("Less than 50 condition?");
-        printNumbers(new IsNumberLessThen50());
+        printNumbers(new NumberCondition() {
+            @Override
+            public boolean checkCondition(int number) {
+                return number < 50;
+            }
+        });
+
+        //to samo co wyżej tylko przy pomocy lambdy
+        System.out.println("Less then50");
+        printNumbers(number -> number < 50);
 
         System.out.println("Even condition?");
-        printNumbers(new IsNumberEven());
+        printNumbers(new NumberCondition() {
+            @Override
+            public boolean checkCondition(int number) {
+                return number % 2 == 0;
+            }
+        });
     }
 
     public static void printNumbers(NumberCondition numberCondition){
